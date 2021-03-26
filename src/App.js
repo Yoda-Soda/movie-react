@@ -1,5 +1,6 @@
 import PropTypes from "react";
 import { Counter } from "./Counter";
+import { Accordion } from "./Accordion";
 import "./App.css";
 
 function App() {
@@ -7,8 +8,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Counter />
-        <Header2 name="Jan" greeting="Yo" />
-        <Header2 name="Louie" />
+        <Accordion></Accordion>
+        {/* <Header2 name="Jan" greeting="Yo" />
+        <Header2 name="Louie" /> */}
       </header>
     </div>
   );
