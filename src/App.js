@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import PropTypes from "react";
+import { Counter } from "./Counter";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Counter />
+        <Header2 name="Jan" greeting="Yo" />
+        <Header2 name="Louie" />
       </header>
     </div>
   );
 }
+
+const Header2 = ({ name, greeting = "Hello" }) => (
+  <h1>
+    {greeting} {name}!
+  </h1>
+);
+
+Header2.prototype = {
+  greeting: PropTypes.string,
+  name: PropTypes.string,
+};
 
 export default App;
