@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const movies = [
   {
@@ -13,12 +13,25 @@ const movies = [
 ];
 
 const MoviesList = () => {
+  const [filter, setFilter] = useState("");
   return (
     <div>
+      <label>
+        Filter:
+        <input
+          type="text"
+          onChange={(e) => setFilter(e.target.value)}
+          value={filter}
+        />
+      </label>
       <ul>
-        {movies.map((movie) => {
-          return <li key={movie.name}>{movie.name}</li>;
-        })}
+        {movies
+          .filter((movie) => {
+            return movie.name.toLowerCase().includes(filter.toLowerCase());
+          })
+          .map((movie) => {
+            return <li key={movie}>{movie.name}</li>;
+          })}
       </ul>
     </div>
   );
