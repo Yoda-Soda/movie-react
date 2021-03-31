@@ -1,4 +1,4 @@
-import PropTypes from "react";
+//import PropTypes from "react";
 // import { Counter } from "./Counter";
 // import { Accordion } from "./Accordion";
 // import { Input } from "./Input";

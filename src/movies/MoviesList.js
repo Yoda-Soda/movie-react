@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Movie from "./Movie";
 import Filter from "../Filter";
 const movies = [
@@ -15,16 +15,13 @@ const movies = [
 
 const MoviesList = () => {
   const [filter, setFilter] = useState("");
-  // const varName = useRef(initialisation);
-  const ulRef = useRef(null);
-  const ref = useRef(null);
+
+  useEffect(() => {
+    console.log("hit effect");
+  }, [filter]);
 
   return (
-    <div ref={ulRef}>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <input type="text" ref={ref} />
-        <button></button>
-      </form>
+    <div>
       <Filter filter={filter} setFilter={setFilter} />
       <ul>
         {movies
@@ -32,7 +29,7 @@ const MoviesList = () => {
             return movie.name.toLowerCase().includes(filter.toLowerCase());
           })
           .map((movie) => (
-            <Movie movie={movie} />
+            <Movie key={movie.name} movie={movie} />
           ))}
       </ul>
     </div>
