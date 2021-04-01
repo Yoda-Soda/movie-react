@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 const Movie = ({ movie }) => {
   return (
     <div>
-      <li>{movie.name}</li>
+      <li>{movie.title}</li>
     </div>
   );
 };
 
 Movie.propTypes = {
   movie: PropTypes.shape({
-    name: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
   }).isRequired,
 };
 
