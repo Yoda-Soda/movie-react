@@ -8,23 +8,31 @@ const MovieDetail = () => {
   const [movie, setMovie] = useState({});
 
   const getMovie = async () => {
-    const res = await fetch(
-      `${MOVIE_API_URL}${id}?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US`
-    );
-    const resMovie = await res.json();
-    setMovie(resMovie);
-    console.log(resMovie);
+    try {
+      const res = await fetch(
+        `${MOVIE_API_URL}${id}?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US`
+      );
+      const resMovie = await res.json();
+      setMovie(resMovie);
+      console.log(resMovie);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
     getMovie();
-  }, []);
+  }, [id]);
 
   return (
     <div>
-      <h1>{movie.original_title}</h1>
-
+      <h1>{movie.title}</h1>
       <p>{movie.overview}</p>
+      <ul>
+        {movie.genres.map((genre) => {
+          return <li key={genre.id}>{genre.name}</li>;
+        })}
+      </ul>
     </div>
   );
 };
