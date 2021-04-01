@@ -3,12 +3,23 @@
 // import { Accordion } from "./Accordion";
 // import { Input } from "./Input";
 import MoviesList from "./movies/MoviesList";
+import MovieDetail from "./movies/MovieDetail";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <MoviesList></MoviesList>
+      <Router>
+        <Switch>
+          <Route path="/movie/:id">
+            <MovieDetail />
+          </Route>
+          <Route path="/">
+            <MoviesList />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
