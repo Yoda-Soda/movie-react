@@ -7,22 +7,37 @@ const MovieDetail = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState({});
 
-  const getMovie = async () => {
-    try {
-      const res = await fetch(
-        `${MOVIE_API_URL}${id}?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US`
-      );
-      const resMovie = await res.json();
-      setMovie(resMovie);
-      console.log(resMovie);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //   const getMovie = async () => {
+  //     try {
+  //       const res = await fetch(
+  //         `${MOVIE_API_URL}${id}?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US`
+  //       );
+  //       const resMovie = await res.json();
+  //       setMovie(resMovie);
+  //       console.log(resMovie);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
 
   useEffect(() => {
-    getMovie();
+    (async () => {
+      try {
+        const res = await fetch(
+          `${MOVIE_API_URL}${id}?api_key=${process.env.REACT_APP_MOVIE_API}&language=en-US`
+        );
+        const resMovie = await res.json();
+        setMovie(resMovie);
+        console.log(resMovie);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+
+    //getMovie();
   }, [id]);
+
+  if (!movie.genres) return null;
 
   return (
     <div>
